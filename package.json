@@ -18,12 +18,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CentennialCollege/COMP392-MidTerm.git"
+    "url": "git+https://github.com/Riml/COMP392-MidTerm"
   },
-  "author": "Tom Tsiliopoulos",
+  "author": "Ilmir Taychinov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CentennialCollege/COMP392-MidTerm/issues"
+    "url": "https://github.com/Riml/COMP392-MidTerm/issues"
   },
-  "homepage": "https://github.com/CentennialCollege/COMP392-MidTerm#readme"
+  "homepage": "https://github.com/Riml/COMP392-MidTerm#readme"
 }
