@@ -104,14 +104,31 @@ var game = (() => {
         console.log("Added a AmbientLight and SpotLight Light to Scene");
         //load Textures for the tower
         concreteTexture= THREE.ImageUtils.loadTexture('Content/textures/concrete.jpg');
+        redGlassTexture= THREE.ImageUtils.loadTexture('Content/textures/red.jpg');
+        blueGlassTexture= THREE.ImageUtils.loadTexture('Content/textures/blue.jpg');
+        whitePlalsticTexture= THREE.ImageUtils.loadTexture('Content/textures/white.jpg');
         
         //generate tower
         tower = new Object3D();
-        addCubes(0,1,0,5,1,5,tower,concreteTexture);
-        addCubes(0,2,0,4,1,4,tower,concreteTexture);
-        addCubes(0,3,0,3,1,3,tower,concreteTexture);
-        addCubes(0,4,0,2,1,2,tower,concreteTexture);
+        //firs 8 block of tower
+        addCubes(0,1,0,1,1,1,tower,concreteTexture);
+        addCubes(0,2,0,1,1,1,tower,concreteTexture);
+        addCubes(0,3,0,1,1,1,tower,concreteTexture);
+        addCubes(0,4,0,1,1,1,tower,concreteTexture);
         addCubes(0,5,0,1,1,1,tower,concreteTexture);
+        addCubes(0,6,0,1,1,1,tower,concreteTexture);
+        addCubes(0,7,0,1,1,1,tower,concreteTexture);
+        addCubes(0,8,0,1,1,1,tower,concreteTexture);
+        //restaraunt part
+        addCubes(0,9,0,1,0.5,1,tower,whitePlalsticTexture);
+        addCubes(0,9.5,0,1,0.5,1,tower,blueGlassTexture);  
+        addCubes(0,10,0,1,1,1,tower,whitePlalsticTexture);
+        //top part with antiplane signal
+        addCubes(0,11,0,1,1,1,tower,concreteTexture);
+        addCubes(0,12,0,1,1,1,tower,redGlassTexture);
+                      
+                      
+                        addCubes(0,5,0,1,1,1,tower,concreteTexture);
         scene.add(tower);
         
  
