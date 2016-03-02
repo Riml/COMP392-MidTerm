@@ -55,14 +55,15 @@ var game = (() => {
     var plane: Mesh;
     var ambientLight: AmbientLight;
     var spotLight: SpotLight;
-
+    var tower: Object3D;
+    //---end of edited area-----------------
+    
     function init() {
         // Instantiate a new Scene object
         //scene = new Scene();
         
         setupRenderer(); // setup the default renderer
-	
-        setupCamera(); // setup the camera
+	    setupCamera(); // setup the camera
 
 
         /* ENTER CODE HERE */
@@ -79,23 +80,25 @@ var game = (() => {
         scene.add(plane);
         console.log("Added Plane Primitive to scene...");
       
-      // Add Lights to the scene
+        // Add Lights to the scene
         spotLight = new SpotLight(0xffffff);
         spotLight.position.set(14, 40, 12);
         spotLight.rotation.set(0,0,0);
         spotLight.intensity=2;
         spotLight.castShadow = true;
-     //make shadows more neat and a bit brighter
+        //make shadows more neat and a bit brighter
         spotLight.shadowMapWidth = 1024;
         spotLight.shadowMapHeight = 1024;
         spotLight.shadowDarkness = 0.5;
         spotLight.shadowCameraFar=1000;
         spotLight.shadowCameraNear=0.1;
         scene.add(spotLight);
-    
         ambientLight = new AmbientLight(0x949494);
         scene.add(ambientLight);
         console.log("Added a AmbientLight and SpotLight Light to Scene");
+        //generate tower
+        tower = new Object3D();
+        addCubes(0,1,0,1,1,1,tower);
         
  
         // add controls
@@ -109,6 +112,17 @@ var game = (() => {
 
         document.body.appendChild(renderer.domElement);
         gameLoop(); // render the scene	
+        
+        
+        function addCubes(x:number,y:number,z:number,h:number,d:number,w:number,attachTo:Object3D):void{
+        var cubeGeometry = new CubeGeometry(h,w,d);
+        var thisCube:Mesh = new Mesh(cubeGeometry,new LambertMaterial({color: Math.random() * 0xffffff}));
+        thisCube.position.set(x,y,z);
+        thisCube.castShadow = true;
+        thisCube.receiveShadow = true;
+        attachTo.add(thisCube);
+ }
+        
 
     }
 

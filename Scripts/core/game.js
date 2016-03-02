@@ -49,6 +49,8 @@ var game = (function () {
     var plane;
     var ambientLight;
     var spotLight;
+    var tower;
+    //---end of edited area-----------------
     function init() {
         // Instantiate a new Scene object
         //scene = new Scene();
@@ -81,6 +83,9 @@ var game = (function () {
         ambientLight = new AmbientLight(0x949494);
         scene.add(ambientLight);
         console.log("Added a AmbientLight and SpotLight Light to Scene");
+        //generate tower
+        tower = new Object3D();
+        addCubes(0, 1, 0, 1, 1, 1, tower);
         // add controls
         gui = new GUI();
         control = new Control();
@@ -90,6 +95,14 @@ var game = (function () {
         console.log("Added Stats to scene...");
         document.body.appendChild(renderer.domElement);
         gameLoop(); // render the scene	
+        function addCubes(x, y, z, h, d, w, attachTo) {
+            var cubeGeometry = new CubeGeometry(h, w, d);
+            var thisCube = new Mesh(cubeGeometry, new LambertMaterial({ color: Math.random() * 0xffffff }));
+            thisCube.position.set(x, y, z);
+            thisCube.castShadow = true;
+            thisCube.receiveShadow = true;
+            attachTo.add(thisCube);
+        }
     }
     function addControl(controlObject) {
         /* ENTER CODE for the GUI CONTROL HERE */
