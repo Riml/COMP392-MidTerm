@@ -57,6 +57,9 @@ var game = (function () {
     var blueGlassTexture; // glass for view stage of tower (CN tower restaraunt)
     var redGlassTexture; //airplane signal at the top
     var scaler; //Preset for scaling
+    var towerBase;
+    var towerRestaraunt;
+    var towerTop;
     //---end of edited area-----------------
     function init() {
         // Instantiate a new Scene object
@@ -97,28 +100,33 @@ var game = (function () {
         whitePlalsticTexture = THREE.ImageUtils.loadTexture('Content/textures/white.jpg');
         //generate tower
         tower = new Object3D();
+        towerBase = new Object3D();
+        towerRestaraunt = new Object3D();
+        towerTop = new Object3D();
         //firs 8 block of tower
-        scaler = 0.7;
-        addCubes(0, 1, 0, 1.8, 1, 1.8, tower, concreteTexture);
-        addCubes(0, 2, 0, 1.7, 1, 1.7, tower, concreteTexture);
-        addCubes(0, 3, 0, 1.6, 1, 1.6, tower, concreteTexture);
-        addCubes(0, 4, 0, 1.5, 1, 1.5, tower, concreteTexture);
-        addCubes(0, 5, 0, 1.4, 1, 1.4, tower, concreteTexture);
-        addCubes(0, 6, 0, 1.3, 1, 1.3, tower, concreteTexture);
-        addCubes(0, 7, 0, 1.2, 1, 1.2, tower, concreteTexture);
-        addCubes(0, 8, 0, 1.1, 1, 1.1, tower, concreteTexture);
+        scaler = 0.9;
+        addCubes(0, 1, 0, 1.2, 1, 1.2, towerBase, concreteTexture);
+        addCubes(0, 2, 0, 1.15, 1, 1.15, towerBase, concreteTexture);
+        addCubes(0, 3, 0, 1.10, 1, 1.10, towerBase, concreteTexture);
+        addCubes(0, 4, 0, 1.05, 1, 1.05, towerBase, concreteTexture);
+        addCubes(0, 5, 0, 1, 1, 1, towerBase, concreteTexture);
+        addCubes(0, 6, 0, 0.95, 1, 0.95, towerBase, concreteTexture);
+        addCubes(0, 7, 0, 0.9, 1, 0.9, towerBase, concreteTexture);
+        addCubes(0, 8, 0, 0.85, 1, 0.85, towerBase, concreteTexture);
         //restaraunt part
-        addCubes(0, 8.5, 0, 2, 0.5, 2, tower, whitePlalsticTexture);
-        addCubes(0, 9.0, 0, 2.5, 0.5, 2.5, tower, blueGlassTexture);
-        addCubes(0, 9.5, 0, 2, 1, 2, tower, whitePlalsticTexture);
+        addCubes(0, 8.33, 0, 1.6, 0.33, 1.6, towerRestaraunt, whitePlalsticTexture);
+        addCubes(0, 8.66, 0, 1.7, 0.33, 1.7, towerRestaraunt, blueGlassTexture);
+        addCubes(0, 9, 0, 1.5, 0.34, 1.5, towerRestaraunt, whitePlalsticTexture);
         //top part with antiplane signal
-        addCubes(0, 11, 0, 0.2, 1.5, 0.2, tower, concreteTexture);
-        addCubes(0, 11.5, 0, 0.21, 0.5, 0.21, tower, redGlassTexture);
-        addCubes(0, 5, 0, 1, 1, 1, tower, concreteTexture);
+        addCubes(0, 9.33, 0, 0.2, 1.5, 0.2, towerTop, concreteTexture);
+        addCubes(0, 10, 0, 0.21, 0.5, 0.21, towerTop, redGlassTexture);
+        tower.add(towerBase);
+        tower.add(towerRestaraunt);
+        tower.add(towerTop);
         scene.add(tower);
         // add controls
         gui = new GUI();
-        control = new Control(-0.001);
+        control = new Control(0.00);
         addControl(control);
         // Add framerate stats
         addStatsObject();
@@ -130,7 +138,7 @@ var game = (function () {
             var thisCube = new Mesh(cubeGeometry, new LambertMaterial({ color: 0xffffff, map: cubeTexture }));
             //-----------Random Color Cubes(now replaced with textures)------------------------------------
             //var thisCube:Mesh = new Mesh(cubeGeometry,new LambertMaterial({color: Math.random() * 0xffffff}));
-            thisCube.position.set(x * scaler, y * scaler, z * scaler);
+            thisCube.position.set(x * scaler, y * scaler - 0.5, z * scaler);
             thisCube.castShadow = true;
             thisCube.receiveShadow = true;
             attachTo.add(thisCube);
@@ -141,8 +149,8 @@ var game = (function () {
         gui.add(controlObject, 'groundCubeRotation', -0.25, 0.25);
         gui.add(controlObject, 'secondCubeRotation', -0.25, 0.25);
         gui.add(controlObject, 'thirdCubeRotation', -0.25, 0.25);
-        gui.add(controlObject, 'fourthCubeRotation', -0.25, 0.25);
-        gui.add(controlObject, 'fifthCubeRotation', -0.25, 0.25);
+        // gui.add(controlObject, 'fourthCubeRotation',-0.25,0.25);
+        //  gui.add(controlObject, 'fifthCubeRotation',-0.25,0.25);
     }
     function addStatsObject() {
         stats = new Stats();
@@ -156,11 +164,16 @@ var game = (function () {
     function gameLoop() {
         stats.update();
         //rotation 
+        /* basic tower rotation
+        tower.children[0].rotation.y+=control.groundCubeRotation;
+        tower.children[1].rotation.y+=control.secondCubeRotation;
+        tower.children[2].rotation.y+=control.thirdCubeRotation;
+        tower.children[3].rotation.y+=control.fourthCubeRotation;
+        tower.children[4].rotation.y+=control.fifthCubeRotation;
+        */
         tower.children[0].rotation.y += control.groundCubeRotation;
         tower.children[1].rotation.y += control.secondCubeRotation;
         tower.children[2].rotation.y += control.thirdCubeRotation;
-        tower.children[3].rotation.y += control.fourthCubeRotation;
-        tower.children[4].rotation.y += control.fifthCubeRotation;
         // render using requestAnimationFrame
         requestAnimationFrame(gameLoop);
         // render the scene
