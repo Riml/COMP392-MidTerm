@@ -63,6 +63,13 @@ var game = (() => {
         axes = new AxisHelper(10);
         scene.add(axes);
         console.log("Added Axis Helper to scene...");
+        
+        //Add a Plane to the Scene
+        plane = new gameObject(new PlaneGeometry(24, 24, 1, 1),new LambertMaterial({ color: 0x123456 }),0, 0, 0);
+        plane.rotation.x = -0.5 * Math.PI;
+        plane.receiveShadow = true;
+        scene.add(plane);
+        console.log("Added Plane Primitive to scene...");
       
         
  
