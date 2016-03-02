@@ -99,21 +99,21 @@ var game = (function () {
         tower = new Object3D();
         //firs 8 block of tower
         scaler = 0.5;
-        addCubes(0, 1, 0, 1, 1, 1, tower, concreteTexture);
-        addCubes(0, 2, 0, 1, 1, 1, tower, concreteTexture);
-        addCubes(0, 3, 0, 1, 1, 1, tower, concreteTexture);
-        addCubes(0, 4, 0, 1, 1, 1, tower, concreteTexture);
-        addCubes(0, 5, 0, 1, 1, 1, tower, concreteTexture);
-        addCubes(0, 6, 0, 1, 1, 1, tower, concreteTexture);
-        addCubes(0, 7, 0, 1, 1, 1, tower, concreteTexture);
-        addCubes(0, 8, 0, 1, 1, 1, tower, concreteTexture);
+        addCubes(0, 1, 0, 1.8, 1, 1.8, tower, concreteTexture);
+        addCubes(0, 2, 0, 1.7, 1, 1.7, tower, concreteTexture);
+        addCubes(0, 3, 0, 1.6, 1, 1.6, tower, concreteTexture);
+        addCubes(0, 4, 0, 1.5, 1, 1.5, tower, concreteTexture);
+        addCubes(0, 5, 0, 1.4, 1, 1.4, tower, concreteTexture);
+        addCubes(0, 6, 0, 1.3, 1, 1.3, tower, concreteTexture);
+        addCubes(0, 7, 0, 1.2, 1, 1.2, tower, concreteTexture);
+        addCubes(0, 8, 0, 1.1, 1, 1.1, tower, concreteTexture);
         //restaraunt part
-        addCubes(0, 9, 0, 1, 0.5, 1, tower, whitePlalsticTexture);
-        addCubes(0, 9.5, 0, 1, 0.5, 1, tower, blueGlassTexture);
-        addCubes(0, 10, 0, 1, 1, 1, tower, whitePlalsticTexture);
+        addCubes(0, 8.5, 0, 2, 0.5, 2, tower, whitePlalsticTexture);
+        addCubes(0, 9.0, 0, 2.5, 0.5, 2.5, tower, blueGlassTexture);
+        addCubes(0, 9.5, 0, 2, 1, 2, tower, whitePlalsticTexture);
         //top part with antiplane signal
-        addCubes(0, 11, 0, 1, 1, 1, tower, concreteTexture);
-        addCubes(0, 12, 0, 1, 1, 1, tower, redGlassTexture);
+        addCubes(0, 11, 0, 0.2, 1, 0.2, tower, concreteTexture);
+        addCubes(0, 11.5, 0, 0.15, 0.5, 0.15, tower, redGlassTexture);
         addCubes(0, 5, 0, 1, 1, 1, tower, concreteTexture);
         scene.add(tower);
         // add controls
