@@ -98,7 +98,11 @@ var game = (() => {
         console.log("Added a AmbientLight and SpotLight Light to Scene");
         //generate tower
         tower = new Object3D();
-        addCubes(0,1,0,1,1,1,tower);
+        addCubes(0,1,0,5,1,5,tower);
+        addCubes(0,2,0,4,1,4,tower);
+        addCubes(0,3,0,3,1,3,tower);
+        addCubes(0,4,0,2,1,2,tower);
+        addCubes(0,5,0,1,1,1,tower);
         scene.add(tower);
         
  
