@@ -56,6 +56,7 @@ var game = (function () {
     var whitePlalsticTexture; //top and bottom for view stage of tower (CN tower restaraunt)
     var blueGlassTexture; // glass for view stage of tower (CN tower restaraunt)
     var redGlassTexture; //airplane signal at the top
+    var scaler; //Preset for scaling
     //---end of edited area-----------------
     function init() {
         // Instantiate a new Scene object
@@ -97,6 +98,7 @@ var game = (function () {
         //generate tower
         tower = new Object3D();
         //firs 8 block of tower
+        scaler = 0.5;
         addCubes(0, 1, 0, 1, 1, 1, tower, concreteTexture);
         addCubes(0, 2, 0, 1, 1, 1, tower, concreteTexture);
         addCubes(0, 3, 0, 1, 1, 1, tower, concreteTexture);
@@ -124,11 +126,11 @@ var game = (function () {
         document.body.appendChild(renderer.domElement);
         gameLoop(); // render the scene	
         function addCubes(x, y, z, h, w, d, attachTo, cubeTexture) {
-            var cubeGeometry = new CubeGeometry(h, w, d);
+            var cubeGeometry = new CubeGeometry(h * scaler, w * scaler, d * scaler);
             var thisCube = new Mesh(cubeGeometry, new LambertMaterial({ color: 0xffffff, map: cubeTexture }));
             //-----------Random Color Cubes(now replaced with textures)------------------------------------
             //var thisCube:Mesh = new Mesh(cubeGeometry,new LambertMaterial({color: Math.random() * 0xffffff}));
-            thisCube.position.set(x, y, z);
+            thisCube.position.set(x * scaler, y * scaler, z * scaler);
             thisCube.castShadow = true;
             thisCube.receiveShadow = true;
             attachTo.add(thisCube);
