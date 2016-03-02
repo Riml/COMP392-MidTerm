@@ -57,6 +57,22 @@ var game = (function () {
         plane.receiveShadow = true;
         scene.add(plane);
         console.log("Added Plane Primitive to scene...");
+        // Add Lights to the scene
+        spotLight = new SpotLight(0xffffff);
+        spotLight.position.set(14, 40, 12);
+        spotLight.rotation.set(0, 0, 0);
+        spotLight.intensity = 2;
+        spotLight.castShadow = true;
+        //make shadows more neat and a bit brighter
+        spotLight.shadowMapWidth = 1024;
+        spotLight.shadowMapHeight = 1024;
+        spotLight.shadowDarkness = 0.5;
+        spotLight.shadowCameraFar = 1000;
+        spotLight.shadowCameraNear = 0.1;
+        scene.add(spotLight);
+        ambientLight = new AmbientLight(0x949494);
+        scene.add(ambientLight);
+        console.log("Added a AmbientLight and SpotLight Light to Scene");
         // add controls
         gui = new GUI();
         control = new Control();
