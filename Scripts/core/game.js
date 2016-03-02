@@ -98,7 +98,7 @@ var game = (function () {
         //generate tower
         tower = new Object3D();
         //firs 8 block of tower
-        scaler = 0.5;
+        scaler = 0.7;
         addCubes(0, 1, 0, 1.8, 1, 1.8, tower, concreteTexture);
         addCubes(0, 2, 0, 1.7, 1, 1.7, tower, concreteTexture);
         addCubes(0, 3, 0, 1.6, 1, 1.6, tower, concreteTexture);
@@ -112,8 +112,8 @@ var game = (function () {
         addCubes(0, 9.0, 0, 2.5, 0.5, 2.5, tower, blueGlassTexture);
         addCubes(0, 9.5, 0, 2, 1, 2, tower, whitePlalsticTexture);
         //top part with antiplane signal
-        addCubes(0, 11, 0, 0.2, 1, 0.2, tower, concreteTexture);
-        addCubes(0, 11.5, 0, 0.15, 0.5, 0.15, tower, redGlassTexture);
+        addCubes(0, 11, 0, 0.2, 1.5, 0.2, tower, concreteTexture);
+        addCubes(0, 11.5, 0, 0.21, 0.5, 0.21, tower, redGlassTexture);
         addCubes(0, 5, 0, 1, 1, 1, tower, concreteTexture);
         scene.add(tower);
         // add controls
