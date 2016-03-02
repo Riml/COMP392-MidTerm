@@ -33,6 +33,8 @@ var Vector3 = THREE.Vector3;
 var Face3 = THREE.Face3;
 var Point = objects.Point;
 var CScreen = config.Screen;
+//----added extra imports for textures
+var Texture = THREE.Texture;
 //Custom Game Objects
 var gameObject = objects.gameObject;
 // setup an IIFE structure (Immediately Invoked Function Expression)
@@ -50,6 +52,10 @@ var game = (function () {
     var ambientLight;
     var spotLight;
     var tower;
+    var concreteTexture; //for base of tower
+    var whitePlalsticTexture; //top and bottom for view stage of tower (CN tower restaraunt)
+    var blueGlassTexture; // glass for view stage of tower (CN tower restaraunt)
+    var redGlassTexture; //airplane signal at the top
     //---end of edited area-----------------
     function init() {
         // Instantiate a new Scene object
@@ -83,13 +89,15 @@ var game = (function () {
         ambientLight = new AmbientLight(0x949494);
         scene.add(ambientLight);
         console.log("Added a AmbientLight and SpotLight Light to Scene");
+        //load Textures for the tower
+        concreteTexture = THREE.ImageUtils.loadTexture('Content/textures/concrete.jpg');
         //generate tower
         tower = new Object3D();
-        addCubes(0, 1, 0, 5, 1, 5, tower);
-        addCubes(0, 2, 0, 4, 1, 4, tower);
-        addCubes(0, 3, 0, 3, 1, 3, tower);
-        addCubes(0, 4, 0, 2, 1, 2, tower);
-        addCubes(0, 5, 0, 1, 1, 1, tower);
+        addCubes(0, 1, 0, 5, 1, 5, tower, concreteTexture);
+        addCubes(0, 2, 0, 4, 1, 4, tower, concreteTexture);
+        addCubes(0, 3, 0, 3, 1, 3, tower, concreteTexture);
+        addCubes(0, 4, 0, 2, 1, 2, tower, concreteTexture);
+        addCubes(0, 5, 0, 1, 1, 1, tower, concreteTexture);
         scene.add(tower);
         // add controls
         gui = new GUI();
@@ -100,9 +108,11 @@ var game = (function () {
         console.log("Added Stats to scene...");
         document.body.appendChild(renderer.domElement);
         gameLoop(); // render the scene	
-        function addCubes(x, y, z, h, w, d, attachTo) {
+        function addCubes(x, y, z, h, w, d, attachTo, cubeTexture) {
             var cubeGeometry = new CubeGeometry(h, w, d);
-            var thisCube = new Mesh(cubeGeometry, new LambertMaterial({ color: Math.random() * 0xffffff }));
+            var thisCube = new Mesh(cubeGeometry, new LambertMaterial({ color: 0xffffff, map: cubeTexture }));
+            //-----------Random Color Cubes(now replaced with textures)------------------------------------
+            //var thisCube:Mesh = new Mesh(cubeGeometry,new LambertMaterial({color: Math.random() * 0xffffff}));
             thisCube.position.set(x, y, z);
             thisCube.castShadow = true;
             thisCube.receiveShadow = true;

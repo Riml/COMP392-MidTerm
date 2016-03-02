@@ -35,7 +35,8 @@ import Vector3 = THREE.Vector3;
 import Face3 = THREE.Face3;
 import Point = objects.Point;
 import CScreen = config.Screen;
-
+//----added extra imports for textures
+import Texture =THREE.Texture;
 //Custom Game Objects
 import gameObject = objects.gameObject;
 
@@ -56,6 +57,11 @@ var game = (() => {
     var ambientLight: AmbientLight;
     var spotLight: SpotLight;
     var tower: Object3D;
+    var concreteTexture: Texture; //for base of tower
+    var whitePlalsticTexture: Texture; //top and bottom for view stage of tower (CN tower restaraunt)
+    var blueGlassTexture: Texture; // glass for view stage of tower (CN tower restaraunt)
+    var redGlassTexture: Texture; //airplane signal at the top
+    
     //---end of edited area-----------------
     
     function init() {
@@ -96,13 +102,16 @@ var game = (() => {
         ambientLight = new AmbientLight(0x949494);
         scene.add(ambientLight);
         console.log("Added a AmbientLight and SpotLight Light to Scene");
+        //load Textures for the tower
+        concreteTexture= THREE.ImageUtils.loadTexture('Content/textures/concrete.jpg');
+        
         //generate tower
         tower = new Object3D();
-        addCubes(0,1,0,5,1,5,tower);
-        addCubes(0,2,0,4,1,4,tower);
-        addCubes(0,3,0,3,1,3,tower);
-        addCubes(0,4,0,2,1,2,tower);
-        addCubes(0,5,0,1,1,1,tower);
+        addCubes(0,1,0,5,1,5,tower,concreteTexture);
+        addCubes(0,2,0,4,1,4,tower,concreteTexture);
+        addCubes(0,3,0,3,1,3,tower,concreteTexture);
+        addCubes(0,4,0,2,1,2,tower,concreteTexture);
+        addCubes(0,5,0,1,1,1,tower,concreteTexture);
         scene.add(tower);
         
  
@@ -119,9 +128,12 @@ var game = (() => {
         gameLoop(); // render the scene	
         
         
-        function addCubes(x:number,y:number,z:number,h:number,w:number,d:number,attachTo:Object3D):void{
+        function addCubes(x:number,y:number,z:number,h:number,w:number,d:number,attachTo:Object3D,cubeTexture:Texture):void{
         var cubeGeometry = new CubeGeometry(h,w,d);
-        var thisCube:Mesh = new Mesh(cubeGeometry,new LambertMaterial({color: Math.random() * 0xffffff}));
+        var thisCube:Mesh = new Mesh(cubeGeometry,new LambertMaterial({color: 0xffffff,map: cubeTexture}));
+        //-----------Random Color Cubes(now replaced with textures)------------------------------------
+        //var thisCube:Mesh = new Mesh(cubeGeometry,new LambertMaterial({color: Math.random() * 0xffffff}));
+        
         thisCube.position.set(x,y,z);
         thisCube.castShadow = true;
         thisCube.receiveShadow = true;
