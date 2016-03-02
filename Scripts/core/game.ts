@@ -119,7 +119,7 @@ var game = (() => {
         gameLoop(); // render the scene	
         
         
-        function addCubes(x:number,y:number,z:number,h:number,d:number,w:number,attachTo:Object3D):void{
+        function addCubes(x:number,y:number,z:number,h:number,w:number,d:number,attachTo:Object3D):void{
         var cubeGeometry = new CubeGeometry(h,w,d);
         var thisCube:Mesh = new Mesh(cubeGeometry,new LambertMaterial({color: Math.random() * 0xffffff}));
         thisCube.position.set(x,y,z);

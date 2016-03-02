@@ -100,7 +100,7 @@ var game = (function () {
         console.log("Added Stats to scene...");
         document.body.appendChild(renderer.domElement);
         gameLoop(); // render the scene	
-        function addCubes(x, y, z, h, d, w, attachTo) {
+        function addCubes(x, y, z, h, w, d, attachTo) {
             var cubeGeometry = new CubeGeometry(h, w, d);
             var thisCube = new Mesh(cubeGeometry, new LambertMaterial({ color: Math.random() * 0xffffff }));
             thisCube.position.set(x, y, z);
