@@ -11,12 +11,21 @@ Last Modified: 2 March 2016
 module objects {
     // CONTROL CLASS ++++++++++++++++++++++++++++++++++++++++++
     export class Control { 
-        
+        public groundCubeRotation:number;
+        public secondCubeRotation:number;
+        public thirdCubeRotation:number;
+        public fourthCubeRotation:number;
+        //public fifthCubeRotation:string;
+        public fifthCubeRotation:number;
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++
-        constructor() {
-
+        constructor(basicSpeed:number) {
+            this.groundCubeRotation = -basicSpeed;
+            this.secondCubeRotation = basicSpeed;
+            this.thirdCubeRotation = -basicSpeed;
+            this.fourthCubeRotation = basicSpeed;
+            this.fifthCubeRotation = -basicSpeed;
+            
         }
-        
         //PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++
        
     }

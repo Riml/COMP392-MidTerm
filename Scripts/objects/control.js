@@ -12,7 +12,12 @@ var objects;
     // CONTROL CLASS ++++++++++++++++++++++++++++++++++++++++++
     var Control = (function () {
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++
-        function Control() {
+        function Control(basicSpeed) {
+            this.groundCubeRotation = -basicSpeed;
+            this.secondCubeRotation = basicSpeed;
+            this.thirdCubeRotation = -basicSpeed;
+            this.fourthCubeRotation = basicSpeed;
+            this.fifthCubeRotation = -basicSpeed;
         }
         return Control;
     }());

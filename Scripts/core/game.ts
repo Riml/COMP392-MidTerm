@@ -108,7 +108,7 @@ var game = (() => {
  
         // add controls
         gui = new GUI();
-        control = new Control();
+        control= new Control(-0.001);
         addControl(control);
 
         // Add framerate stats
@@ -133,8 +133,13 @@ var game = (() => {
 
     function addControl(controlObject: Control): void {
         /* ENTER CODE for the GUI CONTROL HERE */
+        gui.add(controlObject, 'groundCubeRotation',-0.25,0.25);
+        gui.add(controlObject, 'secondCubeRotation',-0.25,0.25);
+        gui.add(controlObject, 'thirdCubeRotation',-0.25,0.25);
+        gui.add(controlObject, 'fourthCubeRotation',-0.25,0.25);
+        gui.add(controlObject, 'fifthCubeRotation',-0.25,0.25);
     }
-
+    
     function addStatsObject() {
         stats = new Stats();
         stats.setMode(0);
@@ -148,6 +153,17 @@ var game = (() => {
     function gameLoop(): void {
         stats.update();
         
+       //rotation 
+       tower.children[0].rotation.y+=control.groundCubeRotation;
+       tower.children[1].rotation.y+=control.secondCubeRotation;
+       tower.children[2].rotation.y+=control.thirdCubeRotation;
+       tower.children[3].rotation.y+=control.fourthCubeRotation;
+       tower.children[4].rotation.y+=control.fifthCubeRotation;
+           
+       
+       
+       
+       
         // render using requestAnimationFrame
         requestAnimationFrame(gameLoop);
 	
