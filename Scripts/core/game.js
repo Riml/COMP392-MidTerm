@@ -36,12 +36,21 @@ var game = (function () {
     var control;
     var gui;
     var stats;
+    //-----adding required objects-------
+    var axes;
+    var plane;
+    var ambientLight;
+    var spotLight;
     function init() {
         // Instantiate a new Scene object
         //scene = new Scene();
         setupRenderer(); // setup the default renderer
         setupCamera(); // setup the camera
         /* ENTER CODE HERE */
+        // add an axis helper to the scene
+        axes = new AxisHelper(10);
+        scene.add(axes);
+        console.log("Added Axis Helper to scene...");
         // add controls
         gui = new GUI();
         control = new Control();

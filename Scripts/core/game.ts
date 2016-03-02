@@ -41,6 +41,12 @@ var game = (() => {
     var control: Control;
     var gui: GUI;
     var stats: Stats;
+    
+    //-----adding required objects-------
+    var axes: AxisHelper;
+    var plane: Mesh;
+    var ambientLight: AmbientLight;
+    var spotLight: SpotLight;
 
     function init() {
         // Instantiate a new Scene object
@@ -52,6 +58,12 @@ var game = (() => {
 
 
         /* ENTER CODE HERE */
+        
+        // add an axis helper to the scene
+        axes = new AxisHelper(10);
+        scene.add(axes);
+        console.log("Added Axis Helper to scene...");
+      
         
  
         // add controls
