@@ -86,6 +86,7 @@ var game = (function () {
         //generate tower
         tower = new Object3D();
         addCubes(0, 1, 0, 1, 1, 1, tower);
+        scene.add(tower);
         // add controls
         gui = new GUI();
         control = new Control();
